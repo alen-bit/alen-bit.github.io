@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link rel="shortcut icon" href="favicon.ico" />
   <style>
+    /* 原有样式保持不变 */
     body {
       font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       font-size: calc(10px + 0.33vw);
@@ -53,7 +54,6 @@
       top: 0%;
     }
 
-    /* 粒子画布样式 */
     #cas {
       position: fixed;
       left:0;
@@ -64,7 +64,6 @@
       pointer-events: none;
     }
     
-    /* 控制面板按钮 */
     .control-btn {
       position: fixed;
       top: 20px;
@@ -89,7 +88,6 @@
       box-shadow: 0 6px 20px rgba(79, 192, 141, 0.4);
     }
     
-    /* 滑动面板 */
     .slide-panel {
       position: fixed;
       top: 0;
@@ -110,7 +108,6 @@
       right: 0;
     }
     
-    /* 关闭按钮 */
     .close-btn {
       position: absolute;
       top: 15px;
@@ -134,7 +131,6 @@
       transform: rotate(90deg);
     }
     
-    /* 面板标题 */
     .panel-title {
       font-size: 2.5em;
       margin-bottom: 30px;
@@ -153,6 +149,44 @@
       width: 80px;
       height: 3px;
       background: linear-gradient(90deg, transparent, rgba(79, 192, 141, 1), transparent);
+    }
+    
+    /* 标签页导航 */
+    .tab-nav {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 10px;
+    }
+    
+    .tab-btn {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.2em;
+      padding: 8px 15px;
+      cursor: pointer;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .tab-btn:hover {
+      color: rgba(79, 192, 141, 1);
+      background: rgba(79, 192, 141, 0.1);
+    }
+    
+    .tab-btn.active {
+      color: rgba(79, 192, 141, 1);
+      background: rgba(79, 192, 141, 0.2);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
     }
     
     /* 倒计时部分 */
@@ -263,6 +297,263 @@
       margin-top: 5px;
     }
     
+    /* 游戏部分样式 */
+    .games-section {
+      background: rgba(30, 33, 35, 0.8);
+      border-radius: 15px;
+      padding: 20px;
+      border: 1px solid rgba(79, 192, 141, 0.3);
+    }
+    
+    .games-title {
+      font-size: 1.8em;
+      margin-bottom: 20px;
+      color: white;
+      text-align: center;
+    }
+    
+    .game-selector {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      gap: 10px;
+    }
+    
+    .game-btn {
+      flex: 1;
+      background: rgba(40, 44, 46, 0.8);
+      border: 2px solid rgba(79, 192, 141, 0.3);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+    }
+    
+    .game-btn:hover {
+      background: rgba(79, 192, 141, 0.2);
+      border-color: rgba(79, 192, 141, 0.7);
+      transform: translateY(-3px);
+    }
+    
+    .game-btn.active {
+      background: rgba(79, 192, 141, 0.3);
+      border-color: rgba(79, 192, 141, 1);
+      color: white;
+    }
+    
+    .game-container {
+      background: rgba(40, 44, 46, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      min-height: 300px;
+      border: 1px solid rgba(79, 192, 141, 0.2);
+    }
+    
+    /* 猜数字游戏样式 */
+    .guess-game {
+      text-align: center;
+    }
+    
+    .guess-title {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      color: rgba(79, 192, 141, 1);
+    }
+    
+    .guess-instruction {
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+    }
+    
+    .guess-input {
+      width: 100%;
+      padding: 12px;
+      font-size: 1.2em;
+      background: rgba(30, 33, 35, 0.9);
+      border: 2px solid rgba(79, 192, 141, 0.5);
+      border-radius: 8px;
+      color: white;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    
+    .guess-btn {
+      background: linear-gradient(135deg, rgba(79, 192, 141, 0.8), rgba(59, 172, 121, 0.8));
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .guess-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(79, 192, 141, 0.4);
+    }
+    
+    .guess-result {
+      background: rgba(30, 33, 35, 0.9);
+      padding: 15px;
+      border-radius: 8px;
+      min-height: 80px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .guess-history {
+      margin-top: 15px;
+      text-align: left;
+    }
+    
+    .history-item {
+      padding: 5px 10px;
+      margin-bottom: 5px;
+      background: rgba(30, 33, 35, 0.7);
+      border-radius: 5px;
+      border-left: 3px solid rgba(79, 192, 141, 0.5);
+    }
+    
+    /* 反应测试游戏样式 */
+    .reaction-game {
+      text-align: center;
+    }
+    
+    .reaction-title {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      color: rgba(79, 192, 141, 1);
+    }
+    
+    .reaction-instruction {
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+    }
+    
+    .reaction-btn {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 87, 87, 0.9), rgba(255, 120, 120, 0.9));
+      color: white;
+      border: none;
+      font-size: 1.5em;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 20px auto;
+      transition: all 0.1s ease;
+      display: block;
+    }
+    
+    .reaction-btn.active {
+      background: linear-gradient(135deg, rgba(79, 192, 141, 0.9), rgba(59, 172, 121, 0.9));
+      transform: scale(1.05);
+    }
+    
+    .reaction-stats {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+    
+    .stat-item {
+      text-align: center;
+      background: rgba(30, 33, 35, 0.7);
+      padding: 10px 15px;
+      border-radius: 8px;
+      min-width: 80px;
+    }
+    
+    .stat-value {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: rgba(79, 192, 141, 1);
+      display: block;
+    }
+    
+    .stat-label {
+      font-size: 0.9em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* 打地鼠游戏样式 */
+    .whack-game {
+      text-align: center;
+    }
+    
+    .whack-title {
+      font-size: 1.5em;
+      margin-bottom: 15px;
+      color: rgba(79, 192, 141, 1);
+    }
+    
+    .whack-instruction {
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+    }
+    
+    .whack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .whack-hole {
+      aspect-ratio: 1;
+      background: rgba(60, 40, 20, 0.8);
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .whack-mole {
+      position: absolute;
+      width: 80%;
+      height: 80%;
+      background: rgba(140, 90, 60, 0.9);
+      border-radius: 50%;
+      top: 100%;
+      left: 10%;
+      transition: top 0.3s ease;
+    }
+    
+    .whack-mole.active {
+      top: 10%;
+      background: rgba(180, 120, 80, 0.9);
+    }
+    
+    .whack-controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .whack-btn {
+      background: linear-gradient(135deg, rgba(79, 192, 141, 0.8), rgba(59, 172, 121, 0.8));
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1em;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .whack-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(79, 192, 141, 0.4);
+    }
+    
     /* 冒死获取提示 */
     .risk-note {
       text-align: center;
@@ -289,6 +580,11 @@
       .countdown-value {
         font-size: 2em;
       }
+      
+      .reaction-btn {
+        width: 120px;
+        height: 120px;
+      }
     }
     
     @media (max-width: 480px) {
@@ -300,6 +596,15 @@
       .control-btn {
         padding: 10px 15px;
         font-size: 1em;
+      }
+      
+      .tab-btn {
+        padding: 6px 10px;
+        font-size: 1em;
+      }
+      
+      .game-selector {
+        flex-direction: column;
       }
     }
   </style>
@@ -321,41 +626,136 @@
   <div class="slide-panel" id="slidePanel">
     <button class="close-btn" id="closePanel">×</button>
     
-    <h2 class="panel-title">元旦晚会倒计时</h2>
+    <h2 class="panel-title">元旦晚会特别版</h2>
     
-    <!-- 倒计时部分 -->
-    <div class="countdown-section">
-      <div class="countdown-title">距离元旦晚会开始还有</div>
-      <div class="countdown-display">
-        <div class="countdown-unit">
-          <span class="countdown-value" id="days">00</span>
-          <span class="countdown-label">天</span>
-        </div>
-        <div class="countdown-unit">
-          <span class="countdown-value" id="hours">00</span>
-          <span class="countdown-label">时</span>
-        </div>
-        <div class="countdown-unit">
-          <span class="countdown-value" id="minutes">00</span>
-          <span class="countdown-label">分</span>
-        </div>
-        <div class="countdown-unit">
-          <span class="countdown-value" id="seconds">00</span>
-          <span class="countdown-label">秒</span>
-        </div>
-      </div>
-      <div class="countdown-note">准备好迎接狂欢之夜了吗？</div>
+    <!-- 标签页导航 -->
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="countdown">倒计时</button>
+      <button class="tab-btn" data-tab="program">节目单</button>
+      <button class="tab-btn" data-tab="games">小游戏</button>
     </div>
     
-    <!-- 节目单部分 -->
-    <div class="program-section">
-      <div class="program-title">晚会节目单</div>
-      <ul class="program-list" id="programList">
-        <!-- 节目将通过JavaScript动态添加 -->
-      </ul>
-      <div class="risk-note">
-        ⚠️ 节目单正在冒死获取中...<br>
-        最新情报将随时更新！
+    <!-- 倒计时标签页 -->
+    <div class="tab-content active" id="countdown-tab">
+      <div class="countdown-section">
+        <div class="countdown-title">距离元旦晚会开始还有</div>
+        <div class="countdown-display">
+          <div class="countdown-unit">
+            <span class="countdown-value" id="days">00</span>
+            <span class="countdown-label">天</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-value" id="hours">00</span>
+            <span class="countdown-label">时</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-value" id="minutes">00</span>
+            <span class="countdown-label">分</span>
+          </div>
+          <div class="countdown-unit">
+            <span class="countdown-value" id="seconds">00</span>
+            <span class="countdown-label">秒</span>
+          </div>
+        </div>
+        <div class="countdown-note">准备好迎接狂欢之夜了吗？</div>
+      </div>
+    </div>
+    
+    <!-- 节目单标签页 -->
+    <div class="tab-content" id="program-tab">
+      <div class="program-section">
+        <div class="program-title">晚会节目单</div>
+        <ul class="program-list" id="programList">
+          <!-- 节目将通过JavaScript动态添加 -->
+        </ul>
+        <div class="risk-note">
+          ⚠️ 节目单正在冒死获取中...<br>
+          最新情报将随时更新！
+        </div>
+      </div>
+    </div>
+    
+    <!-- 游戏标签页 -->
+    <div class="tab-content" id="games-tab">
+      <div class="games-section">
+        <div class="games-title">晚会小游戏</div>
+        
+        <div class="game-selector">
+          <button class="game-btn active" data-game="guess">猜数字</button>
+          <button class="game-btn" data-game="reaction">反应测试</button>
+          <button class="game-btn" data-game="whack">打地鼠</button>
+        </div>
+        
+        <!-- 猜数字游戏 -->
+        <div class="game-container guess-game active" id="guess-game">
+          <div class="guess-title">猜数字游戏</div>
+          <div class="guess-instruction">
+            我已经想好了一个1-100之间的数字。<br>
+            试试看你能猜几次猜中？
+          </div>
+          <input type="number" min="1" max="100" class="guess-input" id="guess-input" placeholder="输入1-100之间的数字">
+          <button class="guess-btn" id="guess-submit">猜！</button>
+          <button class="guess-btn" id="guess-restart" style="background: rgba(255, 87, 87, 0.8);">重新开始</button>
+          <div class="guess-result">
+            <div id="guess-message">等待你的第一次猜测...</div>
+            <div class="guess-history" id="guess-history"></div>
+          </div>
+        </div>
+        
+        <!-- 反应测试游戏 -->
+        <div class="game-container reaction-game" id="reaction-game">
+          <div class="reaction-title">反应速度测试</div>
+          <div class="reaction-instruction">
+            当按钮变成绿色时，尽快点击它！<br>
+            测试你的反应速度有多快。
+          </div>
+          <button class="reaction-btn" id="reaction-btn">等待...</button>
+          <div class="reaction-stats">
+            <div class="stat-item">
+              <span class="stat-value" id="reaction-time">0</span>
+              <span class="stat-label">最快(ms)</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="reaction-average">0</span>
+              <span class="stat-label">平均(ms)</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="reaction-count">0</span>
+              <span class="stat-label">次数</span>
+            </div>
+          </div>
+          <button class="guess-btn" id="reaction-reset" style="margin-top: 20px;">重置记录</button>
+        </div>
+        
+        <!-- 打地鼠游戏 -->
+        <div class="game-container whack-game" id="whack-game">
+          <div class="whack-title">打地鼠</div>
+          <div class="whack-instruction">
+            点击冒出来的地鼠！<br>
+            游戏时间：30秒
+          </div>
+          <div class="whack-stats">
+            <div class="stat-item">
+              <span class="stat-value" id="whack-score">0</span>
+              <span class="stat-label">分数</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="whack-time">30</span>
+              <span class="stat-label">时间</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="whack-highscore">0</span>
+              <span class="stat-label">最高分</span>
+            </div>
+          </div>
+          <div class="whack-grid" id="whack-grid">
+            <!-- 地鼠洞将通过JavaScript动态生成 -->
+          </div>
+          <div class="whack-controls">
+            <button class="whack-btn" id="whack-start">开始游戏</button>
+            <button class="whack-btn" id="whack-reset" style="background: rgba(255, 87, 87, 0.8);">重新开始</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -364,7 +764,7 @@
   <canvas id="cas"></canvas>
 
   <script>
-    // 粒子背景代码 (保持你原有的粒子效果)
+    // 粒子背景代码 (保持不变)
     var canvas = document.getElementById("cas");
     var ctx = canvas.getContext("2d");
 
@@ -382,7 +782,6 @@
           };
     })();
 
-    // 鼠标活动时，获取鼠标坐标
     var warea = {x: null, y: null, max: 20000};
     window.onmousemove = function(e) {
       e = e || window.event;
@@ -395,7 +794,6 @@
       warea.y = null;
     };
 
-    // 添加粒子
     var dots = [];
     for (var i = 0; i < 1204; i++) {
       var x = Math.random() * canvas.width;
@@ -412,32 +810,25 @@
       });
     }
 
-    // 延迟100毫秒开始执行动画
     setTimeout(function() {
       animate();
     }, 100);
 
-    // 每一帧循环的逻辑
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // 将鼠标坐标添加进去，产生一个用于比对距离的点数组
       var ndots = [warea].concat(dots);
 
       dots.forEach(function(dot) {
-        // 粒子位移
         dot.x += dot.xa;
         dot.y += dot.ya;
 
-        // 遇到边界将加速度反向
         dot.xa *= (dot.x > canvas.width || dot.x < 0) ? -1 : 1;
         dot.ya *= (dot.y > canvas.height || dot.y < 0) ? -1 : 1;
 
-        // 绘制点
         ctx.fillStyle = 'rgba(79, 192, 141, 0.7)';
         ctx.fillRect(dot.x - 0.5, dot.y - 0.5, 1, 1);
 
-        // 循环比对粒子间的距离
         for (var i = 0; i < ndots.length; i++) {
           var d2 = ndots[i];
 
@@ -446,24 +837,18 @@
           var xc = dot.x - d2.x;
           var yc = dot.y - d2.y;
 
-          // 两个粒子之间的距离
           var dis = xc * xc + yc * yc;
 
-          // 距离比
           var ratio;
 
-          // 如果两个粒子之间的距离小于粒子对象的max值，则在两个粒子间画线
           if (dis < d2.max) {
-            // 如果是鼠标，则让粒子向鼠标的位置移动
             if (d2 === warea && dis > (d2.max / 2)) {
               dot.x -= xc * 0.03;
               dot.y -= yc * 0.03;
             }
 
-            // 计算距离比
             ratio = (d2.max - dis) / d2.max;
 
-            // 画线
             ctx.beginPath();
             ctx.lineWidth = ratio / 2;
             ctx.strokeStyle = 'rgba(79,192,141,' + (ratio + 0.2) + ')';
@@ -473,22 +858,55 @@
           }
         }
 
-        // 将已经计算过的粒子从数组中删除
         ndots.splice(ndots.indexOf(dot), 1);
       });
 
       RAF(animate);
     }
     
+    // 标签页切换功能
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = btn.getAttribute('data-tab');
+        
+        // 移除所有active类
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // 添加active类
+        btn.classList.add('active');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+      });
+    });
+    
+    // 游戏切换功能
+    const gameBtns = document.querySelectorAll('.game-btn');
+    const gameContainers = document.querySelectorAll('.game-container');
+    
+    gameBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const gameId = btn.getAttribute('data-game');
+        
+        // 移除所有active类
+        gameBtns.forEach(b => b.classList.remove('active'));
+        gameContainers.forEach(c => c.classList.remove('active'));
+        
+        // 添加active类
+        btn.classList.add('active');
+        document.getElementById(`${gameId}-game`).classList.add('active');
+      });
+    });
+    
     // 元旦晚会倒计时功能
     function updateCountdown() {
-      // 设置元旦晚会时间 - 假设为2024年12月31日19:00
       const eventDate = new Date('December 31, 2024 19:00:00').getTime();
       const now = new Date().getTime();
       const timeLeft = eventDate - now;
       
       if (timeLeft < 0) {
-        // 如果晚会时间已过
         document.getElementById('days').textContent = '00';
         document.getElementById('hours').textContent = '00';
         document.getElementById('minutes').textContent = '00';
@@ -507,7 +925,7 @@
       document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
     }
     
-    // 节目单数据 - 你可以在这里更新真正的节目信息
+    // 节目单数据
     const programs = [
       { time: "18:30-18:50", name: "暖场视频播放", performer: "技术组" },
       { time: "19:00-19:10", name: "开场舞蹈《青春飞扬》", performer: "舞蹈社" },
@@ -529,7 +947,6 @@
         const li = document.createElement('li');
         li.className = 'program-item';
         
-        // 如果是当前时间附近的节目，添加active类
         const currentHour = new Date().getHours();
         const programHour = parseInt(program.time.split(':')[0]);
         if (Math.abs(currentHour - programHour) <= 1) {
@@ -559,12 +976,292 @@
       slidePanel.classList.remove('active');
     });
     
-    // 点击面板外部关闭
     document.addEventListener('click', (e) => {
       if (!slidePanel.contains(e.target) && e.target !== panelToggle) {
         slidePanel.classList.remove('active');
       }
     });
+    
+    // 猜数字游戏逻辑
+    let targetNumber = Math.floor(Math.random() * 100) + 1;
+    let guessCount = 0;
+    let guessHistory = [];
+    
+    document.getElementById('guess-submit').addEventListener('click', makeGuess);
+    document.getElementById('guess-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') makeGuess();
+    });
+    
+    document.getElementById('guess-restart').addEventListener('click', () => {
+      targetNumber = Math.floor(Math.random() * 100) + 1;
+      guessCount = 0;
+      guessHistory = [];
+      document.getElementById('guess-message').textContent = '新游戏已开始！猜一个1-100之间的数字。';
+      document.getElementById('guess-history').innerHTML = '';
+      document.getElementById('guess-input').value = '';
+      document.getElementById('guess-input').focus();
+    });
+    
+    function makeGuess() {
+      const input = document.getElementById('guess-input');
+      const guess = parseInt(input.value);
+      const message = document.getElementById('guess-message');
+      const history = document.getElementById('guess-history');
+      
+      if (isNaN(guess) || guess < 1 || guess > 100) {
+        message.innerHTML = '<span style="color: rgba(255, 100, 100, 0.9);">请输入1-100之间的有效数字！</span>';
+        input.value = '';
+        input.focus();
+        return;
+      }
+      
+      guessCount++;
+      guessHistory.push(guess);
+      
+      let historyHTML = '';
+      guessHistory.forEach((g, i) => {
+        const diff = Math.abs(g - targetNumber);
+        let color = 'rgba(255, 100, 100, 0.9)';
+        if (diff <= 5) color = 'rgba(255, 200, 100, 0.9)';
+        if (diff <= 2) color = 'rgba(100, 255, 100, 0.9)';
+        
+        historyHTML += `<div class="history-item" style="border-left-color: ${color};">第${i+1}次: ${g}</div>`;
+      });
+      
+      history.innerHTML = historyHTML;
+      
+      if (guess === targetNumber) {
+        message.innerHTML = `<span style="color: rgba(79, 192, 141, 1); font-weight: bold;">恭喜！你猜对了！数字就是${targetNumber}。<br>你用了${guessCount}次猜中！</span>`;
+      } else if (guess < targetNumber) {
+        message.innerHTML = `<span style="color: rgba(255, 200, 100, 0.9);">猜小了！试试更大的数字。<br>你已经猜了${guessCount}次。</span>`;
+      } else {
+        message.innerHTML = `<span style="color: rgba(255, 200, 100, 0.9);">猜大了！试试更小的数字。<br>你已经猜了${guessCount}次。</span>`;
+      }
+      
+      input.value = '';
+      input.focus();
+    }
+    
+    // 反应测试游戏逻辑
+    let reactionStartTime = 0;
+    let reactionTimes = [];
+    let reactionWaiting = false;
+    let reactionTimeout = null;
+    
+    const reactionBtn = document.getElementById('reaction-btn');
+    const reactionTimeEl = document.getElementById('reaction-time');
+    const reactionAverageEl = document.getElementById('reaction-average');
+    const reactionCountEl = document.getElementById('reaction-count');
+    
+    reactionBtn.addEventListener('click', handleReactionClick);
+    document.getElementById('reaction-reset').addEventListener('click', resetReactionStats);
+    
+    function startReactionTest() {
+      reactionBtn.textContent = '等待...';
+      reactionBtn.classList.remove('active');
+      reactionWaiting = true;
+      
+      // 随机等待时间：1-3秒
+      const waitTime = Math.random() * 2000 + 1000;
+      
+      reactionTimeout = setTimeout(() => {
+        reactionBtn.textContent = '点击！';
+        reactionBtn.classList.add('active');
+        reactionStartTime = Date.now();
+        reactionWaiting = false;
+      }, waitTime);
+    }
+    
+    function handleReactionClick() {
+      if (reactionWaiting) {
+        // 点击过早
+        clearTimeout(reactionTimeout);
+        reactionBtn.textContent = '太快了！重新开始...';
+        reactionBtn.classList.remove('active');
+        setTimeout(startReactionTest, 1500);
+        return;
+      }
+      
+      if (reactionStartTime === 0) {
+        // 第一次点击，开始游戏
+        startReactionTest();
+        return;
+      }
+      
+      const reactionTime = Date.now() - reactionStartTime;
+      reactionTimes.push(reactionTime);
+      
+      updateReactionStats();
+      
+      // 准备下一次测试
+      reactionBtn.textContent = `${reactionTime} ms，继续...`;
+      reactionBtn.classList.remove('active');
+      reactionStartTime = 0;
+      
+      setTimeout(startReactionTest, 1000);
+    }
+    
+    function updateReactionStats() {
+      const fastest = Math.min(...reactionTimes);
+      const average = Math.round(reactionTimes.reduce((a, b) => a + b, 0) / reactionTimes.length);
+      
+      reactionTimeEl.textContent = fastest;
+      reactionAverageEl.textContent = average;
+      reactionCountEl.textContent = reactionTimes.length;
+      
+      // 保存最高记录到localStorage
+      const savedFastest = localStorage.getItem('reactionFastest');
+      if (!savedFastest || fastest < savedFastest) {
+        localStorage.setItem('reactionFastest', fastest);
+      }
+    }
+    
+    function resetReactionStats() {
+      reactionTimes = [];
+      reactionStartTime = 0;
+      reactionBtn.textContent = '等待...';
+      reactionBtn.classList.remove('active');
+      reactionTimeEl.textContent = '0';
+      reactionAverageEl.textContent = '0';
+      reactionCountEl.textContent = '0';
+      clearTimeout(reactionTimeout);
+      
+      setTimeout(startReactionTest, 500);
+    }
+    
+    // 打地鼠游戏逻辑
+    let whackScore = 0;
+    let whackTimeLeft = 30;
+    let whackTimer = null;
+    let whackGameActive = false;
+    let whackMoles = [];
+    let whackHighScore = localStorage.getItem('whackHighScore') || 0;
+    
+    document.getElementById('whack-highscore').textContent = whackHighScore;
+    document.getElementById('whack-start').addEventListener('click', startWhackGame);
+    document.getElementById('whack-reset').addEventListener('click', resetWhackGame);
+    
+    // 创建地鼠洞
+    const whackGrid = document.getElementById('whack-grid');
+    for (let i = 0; i < 9; i++) {
+      const hole = document.createElement('div');
+      hole.className = 'whack-hole';
+      hole.innerHTML = '<div class="whack-mole"></div>';
+      hole.addEventListener('click', () => whackMole(i));
+      whackGrid.appendChild(hole);
+      whackMoles.push({
+        element: hole.querySelector('.whack-mole'),
+        active: false,
+        timer: null
+      });
+    }
+    
+    function startWhackGame() {
+      if (whackGameActive) return;
+      
+      whackGameActive = true;
+      whackScore = 0;
+      whackTimeLeft = 30;
+      document.getElementById('whack-score').textContent = whackScore;
+      document.getElementById('whack-time').textContent = whackTimeLeft;
+      document.getElementById('whack-start').disabled = true;
+      
+      // 启动计时器
+      whackTimer = setInterval(() => {
+        whackTimeLeft--;
+        document.getElementById('whack-time').textContent = whackTimeLeft;
+        
+        if (whackTimeLeft <= 0) {
+          endWhackGame();
+        }
+      }, 1000);
+      
+      // 开始地鼠出现
+      startMoleAppearance();
+    }
+    
+    function startMoleAppearance() {
+      if (!whackGameActive) return;
+      
+      // 随机选择一个地鼠出现
+      const randomIndex = Math.floor(Math.random() * whackMoles.length);
+      showMole(randomIndex);
+      
+      // 设置下一次地鼠出现的时间（0.5-1.5秒）
+      const nextTime = Math.random() * 1000 + 500;
+      setTimeout(startMoleAppearance, nextTime);
+    }
+    
+    function showMole(index) {
+      if (!whackGameActive || whackMoles[index].active) return;
+      
+      whackMoles[index].active = true;
+      whackMoles[index].element.classList.add('active');
+      
+      // 地鼠自动消失时间（0.8-1.5秒）
+      const hideTime = Math.random() * 700 + 800;
+      whackMoles[index].timer = setTimeout(() => {
+        hideMole(index);
+      }, hideTime);
+    }
+    
+    function hideMole(index) {
+      if (!whackMoles[index].active) return;
+      
+      whackMoles[index].active = false;
+      whackMoles[index].element.classList.remove('active');
+      clearTimeout(whackMoles[index].timer);
+    }
+    
+    function whackMole(index) {
+      if (!whackMoles[index].active || !whackGameActive) return;
+      
+      // 击中地鼠
+      whackScore++;
+      document.getElementById('whack-score').textContent = whackScore;
+      
+      // 隐藏地鼠
+      hideMole(index);
+      
+      // 添加击中效果
+      whackMoles[index].element.style.backgroundColor = 'rgba(255, 100, 100, 0.9)';
+      setTimeout(() => {
+        if (whackMoles[index]) {
+          whackMoles[index].element.style.backgroundColor = '';
+        }
+      }, 200);
+    }
+    
+    function endWhackGame() {
+      whackGameActive = false;
+      clearInterval(whackTimer);
+      document.getElementById('whack-start').disabled = false;
+      
+      // 隐藏所有地鼠
+      whackMoles.forEach((mole, index) => {
+        hideMole(index);
+      });
+      
+      // 更新最高分
+      if (whackScore > whackHighScore) {
+        whackHighScore = whackScore;
+        localStorage.setItem('whackHighScore', whackHighScore);
+        document.getElementById('whack-highscore').textContent = whackHighScore;
+      }
+      
+      // 显示游戏结束消息
+      alert(`游戏结束！\n你的得分：${whackScore}\n最高分：${whackHighScore}`);
+    }
+    
+    function resetWhackGame() {
+      endWhackGame();
+      whackScore = 0;
+      whackTimeLeft = 30;
+      document.getElementById('whack-score').textContent = whackScore;
+      document.getElementById('whack-time').textContent = whackTimeLeft;
+      whackHighScore = localStorage.getItem('whackHighScore') || 0;
+      document.getElementById('whack-highscore').textContent = whackHighScore;
+    }
     
     // 初始化倒计时和节目单
     updateCountdown();
@@ -573,7 +1270,7 @@
     // 每秒更新一次倒计时
     setInterval(updateCountdown, 1000);
     
-    // 每分钟更新一次节目单状态（检查是否有当前节目）
+    // 每分钟更新一次节目单状态
     setInterval(renderProgramList, 60000);
     
     // 添加键盘快捷键：按ESC关闭面板
@@ -582,6 +1279,9 @@
         slidePanel.classList.remove('active');
       }
     });
+    
+    // 初始化反应测试游戏
+    setTimeout(startReactionTest, 2000);
   </script>
 </body>
 </html>
